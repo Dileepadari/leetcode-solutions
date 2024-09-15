@@ -623,3 +623,150 @@ int main(){
     }
     return 0;
 }
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n, k;
+    cin >> n >> k;
+    string x;
+    cin >> x;
+    for(int j = 0;j<k;j++){
+        for(int i = 0;i<x.size()-1;i++){
+            if(x[i] == 'B' && x[i+1] == 'G'){
+                swap(x[i], x[i+1]);
+                i++;
+            }
+        }
+    }
+    cout << x << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    int temp;
+    int odd;
+    cin >> temp;
+    if(temp % 2 == 0){
+        odd = 0;
+    }else{
+        odd = 1;
+    }
+    int flag = 0;
+    int ans = 1;
+    for(int i = 1;i < n;i++){
+        cin >> temp;
+        if((temp % 2 == 0 && odd) || (temp % 2 != 0 && !odd)){
+            if(flag == 1){
+                cout << 1 << endl;
+                return 0;
+            }
+            flag = 1;
+            ans = i+1;
+        }
+    }
+    cout << ans << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    vector<int> groups;
+    int mini = 0;
+    groups.resize(n);
+    for(int i = 0;i<n;i++){
+        cin >> groups[i];
+    }
+    sort(groups.begin(), groups.end());
+    int x=groups.size()-1;
+    int y=0;
+    while(x>=y){
+        if(x>y && groups[x] == 4){
+            x--;
+            mini++;
+        }else if(x>y && groups[y] == 4){
+            y++;
+            mini++;
+        }else if(x>y && groups[x]+groups[y] == 4){
+            x--;
+            y++;
+            mini++;
+        }else if(x>y && groups[x]+groups[y] >= 4){
+            if(groups[x] >= groups[y]){
+                x--;
+                mini++;
+            }else{
+                y++;
+                mini++;
+            }
+        }else if(x-1>y && groups[x]+groups[y] <= 4){
+            groups[x] += groups[y];
+            y++;
+        }else if(x-1 == y && groups[x]+groups[y] <= 4){
+            mini++;
+            break;
+        }else if(x == y){
+            x--;
+            mini++;
+        }
+    }
+    cout << mini << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n, m, a, b;
+    cin >> n >> m >> a >> b;
+    if(m * a < b){
+        cout << n * a << endl;
+        return 0;
+    }
+    cout << min((((n / m)*b) + (n%m * a)), ((n / m)*b) + b) << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> a[i];
+    }
+
+    const int max_val = 100000;
+    vector<long long> count(max_val + 1, 0);
+    for (int num : a) {
+        count[num]++;
+    }
+
+    vector<long long> dp(max_val + 1, 0);
+    dp[1] = count[1] * 1;
+
+    for (int i = 2; i <= max_val; ++i) {
+        dp[i] = max(dp[i - 1], dp[i - 2] + i * count[i]);
+    }
+
+    cout << dp[max_val] << endl;
+
+    return 0;
+}
