@@ -90,43 +90,38 @@ int main() {
 
 
 
+
+
+// rated 432
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
     int t;
+    int num_cells, num_teach, num_queries;
     cin >> t;
-
     while (t--) {
-        int n, m, q;
-        cin >> n >> m >> q;
-
-        vector<int> teach_pos(m);
-        for (int i = 0; i < m; ++i) {
-            cin >> teach_pos[i];
+        cin >> num_cells >> num_teach >> num_queries;
+        vector<int> teach;
+        teach.resize(num_teach);
+        for (int i = 0; i < num_teach; ++i) {
+            cin >> teach[i];
         }
-        sort(teach_pos.begin(), teach_pos.end());
-
-        while (q--) {
+        sort(teach.begin(), teach.end());
+        while (num_queries--)
+        {
             int dav_pos;
             cin >> dav_pos;
-
-            if (dav_pos < teach_pos[0]) {
-                cout << teach_pos[0] - dav_pos << "\n";
-            } else if (dav_pos > teach_pos.back()) {
-                cout << dav_pos - teach_pos.back() << "\n";
+            if (dav_pos < teach[0]) {
+                cout << teach[0] - 1 << endl;
+            } else if (dav_pos > teach.back()) {
+                cout << num_cells - teach.back() << endl;
             } else {
-                auto it = lower_bound(teach_pos.begin(), teach_pos.end(), dav_pos);
-                int req_min = INT_MAX;
-
-                if (it != teach_pos.end()) {
-                    req_min = min(req_min, abs(*it - dav_pos));
-                }
-                if (it != teach_pos.begin()) {
-                    req_min = min(req_min, abs(*(it - 1) - dav_pos));
-                }
-
-                cout << req_min << "\n";
+                auto val1 = upper_bound(teach.begin(), teach.end(), dav_pos);
+                auto val2 = val1 - 1;
+                int mid = (*val1 + *val2) / 2;
+                cout << min(abs(mid - *val1), abs(mid - *val2)) << endl;
             }
         }
     }
@@ -135,4 +130,4 @@ int main() {
 }
 
 
-// rated 432
+
