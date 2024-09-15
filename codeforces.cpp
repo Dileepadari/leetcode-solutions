@@ -770,3 +770,140 @@ int main() {
 
     return 0;
 }
+
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    int x;
+    int flag = 0;
+    for(int i = 0; i< n;i++){
+        cin >> x;
+        if(x == 1 && !flag){
+            cout << "HARD" << endl;
+            flag = 1;
+        }
+    }
+    if(!flag){
+        cout << "EASY" << endl;
+    }
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    int lucky_nos[] = {4, 7, 47, 74, 44, 77, 444, 777, 477, 447,474, 774, 747, 774};
+    for(int i = 0;i < sizeof(lucky_nos)/sizeof(lucky_nos[0]);i++){
+        if(n%lucky_nos[i] == 0){
+            cout << "YES" << endl;
+            return 0;
+        }
+    }
+    cout << "NO" << endl;
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    int p, q;
+    int count = 0;
+    for(int i = 0;i < n; i++){
+        cin >> p >> q;
+        if(q - p >= 2){
+            count++;
+        }
+    }
+    cout << count << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    long long int n, k;
+    cin >> n >> k;
+    int rem;
+    if((n%2 == 0 && k <= n/2) || (n%2 != 0 && k <= n/2 + 1)){
+        cout << (k * 2) - 1 << endl;
+        return 0;
+    }else{
+        if(n%2 == 0){
+            k = k - n/2;
+        }else{
+            k = k - ((n/2)+1);
+        }
+        cout << k * 2 << endl;
+    }
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int comp(int a, int b){
+    return a > b;
+}
+int main(){
+    int n;
+    cin >> n;
+    vector<int> coins;
+    coins.resize(n);
+    for(int i  =0; i < n;i++){
+        cin >> coins[i];
+    }
+    if(n == 1){
+        cout << 1 << endl;
+        return 0;
+    }
+    sort(coins.begin(), coins.end(), comp);
+    int summ = accumulate(coins.begin(), coins.end(), 0);
+    int total = 0;
+    for(int i =0;i < n;i++){
+        total += coins[i];
+        if(total > summ/2){
+            cout << i+1 << endl;
+            return 0;
+        }
+    }
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    int x;
+    cin >> x;
+    int no = x;
+    int count = 1;
+    for(int i = 1; i < n;i++){
+        cin >> x;
+        if(x == no){
+            continue;
+        }else{
+            no = x;
+            count++;
+        }
+    }
+    cout << count << endl;
+    return 0;
+}
