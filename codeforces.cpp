@@ -907,3 +907,303 @@ int main(){
     cout << count << endl;
     return 0;
 }
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    long long int n;
+    cin >> n;
+    long long int total = 0;
+    if(n % 2 == 0){
+        total = n/2;
+    }else
+    {
+        total = ((n-1)/2) - n;
+    }
+    cout << total << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    vector<int> frnds;
+    frnds.resize(n+1);
+    int x;
+    for(int i = 0;i<n;i++){
+        cin >> x;
+        frnds[x] = i+1;
+    }
+    for(int i = 1;i<=n;i++){
+        cout << frnds[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    int x;
+    int total = 0;
+    for(int i = 0; i< n;i++){
+        cin >> x;
+        total+=x;
+    }
+    cout << total / (float)n << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    string x, y;
+    string z = "";
+    cin >> x >> y;
+    for(int i = 0;i<x.size();i++){
+        if(x[i] == y[i]){
+            z+="0";
+        }else{
+            z+="1";
+        }
+    }
+    cout << z << endl;
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    string x;
+    cin >> x;
+    for(int i = 0; i<x.size();i++){
+        if(x[i]=='Q' || x[i] == 'H' || x[i] == '9'){
+            cout << "YES" << endl;
+            return 0;
+        }
+    }
+    cout << "NO" << endl;
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >>n;
+    vector<int> x;
+    x.resize(n);
+    for(int i = 0;i < n;i++){
+        cin >> x[i];
+    }
+    sort(x.begin(), x.end());
+    for(int i =0; i<n; i++){
+        cout << x[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int x, y, z;
+    cin >> x >> y >> z;
+    int maxi = 0;
+    if(x * y * z > maxi){
+        maxi = x * y * z;
+    }
+    
+    if(x * (y + z) > maxi){
+        maxi = x * (y + z);
+    }
+    
+    if((x + y) * z > maxi){
+        maxi = (x + y) * z;
+    }
+    
+    if((x * y) + z > maxi){
+        maxi = (x * y) + z;
+    }
+    
+    if(x + (y * z) > maxi){
+        maxi = x + (y * z);
+    }
+    
+    if(x + y + z > maxi){
+        maxi = x + y + z;
+    }
+
+    cout << maxi << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    int x;
+    int maxmaxi = 0;
+    int maxi = 0;
+    int prev = 0;
+    for(int i = 0;i<n;i++){
+        cin >> x;
+        if(prev <= x){
+            prev = x;
+            maxi++;
+        }else{
+            maxi = 1;
+            prev = x;
+        }
+        if(maxi > maxmaxi){
+            maxmaxi = maxi;
+        }
+    }
+    cout << maxmaxi << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int x, y, z, a;
+    cin >> x >> y >> z >> a;
+    unordered_map<int, int> test;
+    test[x] = 1;
+    int count = 0;
+    if(test.find(y) == test.end()){
+        test[y] = 1;
+    }else{
+        count++;
+    }
+    if(test.find(z) == test.end()){
+        test[z] =1;
+    }else{
+        count++;
+    }
+    if(test.find(a) == test.end()){
+        test[a] =1;
+    }else{
+        count++;
+    }
+    cout << count << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    string x;
+    cin >> x;
+    for(int i = 1;i<x.size();i++){
+        if(x[i] != toupper(x[i])){
+            cout << x << endl;
+            return 0;
+        }
+    }
+    if(x[0] == toupper(x[0])){
+        x[0] = tolower(x[0]);
+    }else{
+        x[0] = toupper(x[0]);
+    }
+    for(int i = 1;i<x.size();i++){
+        x[i] = tolower(x[i]);
+    }
+    cout << x << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    string x;
+    string y = "";
+    cin >> x;
+    int flag = 0;
+    int i = 0;
+    for(i = 0;i<x.size();i++){
+        if(i+2 < x.size() && x[i] == 'W' && x[i+1] == 'U' && x[i+2] == 'B'){
+            i = i+2;
+            if(flag == 1){
+                y+=' ';
+                flag = 0;
+            }
+        }else{
+            y+=x[i];
+            flag = 1;
+        }
+    }
+    cout << y << endl;
+    return 0;
+}
+
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    string x = "I hate ";
+    for(int i = 1;i<n;i++){
+        if(i%2==1){
+            x += "that I love ";
+        }else{
+            x += "that I hate ";
+        }
+    }
+    x += "it";
+    cout << x << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    map<int, int> x;
+    int y, z;
+    for(int i = 0; i<n;i++){
+        cin >> y >> z;
+        x[y] = z;
+    }
+    auto k = x.begin();
+    int start = k->second;
+    for(auto i = x.begin(); i!=x.end();i++){
+        if(start > i->second){
+            cout << "Happy Alex" << endl;
+            return 0;
+        }
+        start = i->second;
+    }
+    cout << "Poor Alex" << endl;
+    return 0;
+}
