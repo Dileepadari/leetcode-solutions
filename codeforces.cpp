@@ -1280,3 +1280,42 @@ int main(){
     cout << "YES" << endl;
     return 0;
 }
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+    int n;
+    cin >> n;
+    int x;
+    cin >> x;
+    int maxi = x;
+    int mini = x;
+    int max_pos = 0, min_pos = 0;
+    vector<int> temp;
+    temp.resize(n);
+    temp[0] =x;
+    int y = x;
+    for(int i=1;i<n;i++){
+        cin >> y;
+            temp[i] = y;
+        if(y > maxi){
+            maxi = y;
+            max_pos = i;
+        }
+        if(y <= mini){
+            mini = y;
+            min_pos = i;
+        }
+    }
+    int count = 0;
+    if(min_pos < max_pos){
+        count = (max_pos) + (n - min_pos - 1) - 1;
+    }else{
+        count = (max_pos) + (n - min_pos - 1);
+    }
+    cout << count << endl;
+    return 0;
+}
