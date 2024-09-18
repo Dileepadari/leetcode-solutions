@@ -1207,3 +1207,76 @@ int main(){
     cout << "Poor Alex" << endl;
     return 0;
 }
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    int a, b;
+    while(t--){
+        cin >> a >> b;
+        if(a % b == 0){
+            cout << 0 << endl;
+        }else{
+            cout << (((a/b) + 1) * b) - a << endl;
+        }
+    }
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    map<int, int> x;
+    int k;
+    int p, q;
+    cin >> p;
+    for(int i = 0;i<p;i++){
+        cin >> k;
+        x[k] = 1;
+    }
+    cin >> q;
+    for(int i = 0;i<q;i++){
+        cin >> k;
+        x[k] = 1;
+    }
+    for(int i = 1;i<=n;i++){
+        if(x.find(i)==x.end()){
+            cout << "Oh, my keyboard!" << endl;
+            return 0;
+        }
+    }
+    cout << "I become the guy." << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    string x;
+    cin >> x;
+    string s = "abcdefghijklmnopqrstuvwxyz";
+    unordered_map<char, int> mapper;
+    for(int i = 0;i<x.size();i++){
+        mapper[tolower(x[i])] = 1;
+    }
+    for(int i=0;i<s.size();i++){
+        if(mapper.find(tolower(s[i]))==mapper.end()){
+            cout << "NO" << endl;
+            return 0;
+        }
+    }
+    cout << "YES" << endl;
+    return 0;
+}
