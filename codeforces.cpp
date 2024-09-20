@@ -1319,3 +1319,247 @@ int main(){
     cout << count << endl;
     return 0;
 }
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int k, l, m, n, d;
+    cin >> k >> l >> m >> n >> d;
+    int count = 0;
+    map<int, int> x;
+    for(int i = k; i <= d;i=i+k){
+        x[i] = 1;
+    }
+    for(int i = l; i <= d;i=i+l){
+        x[i] = 1;
+    }
+    for(int i = m; i <= d;i=i+m){
+        x[i] = 1;
+    }
+    for(int i = n; i <= d;i=i+n){
+        x[i] = 1;
+    }
+    for(int i = 1;i<=d;i++){
+        if(x.find(i) != x.end()){
+            count++;
+        }
+    }
+    cout << count << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    int huns = n / 100;
+    int twen = (n % 100) / 20;
+    int ten = ((n % 100) % 20) / 10;
+    int five = (((n % 100) % 20) % 10) / 5;
+    int one = (((n % 100) % 20) % 10) % 5;
+    cout << huns + twen + ten + five + one << endl;
+    return 0;
+}
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string x;
+    cin >> x;
+    int n = x.size();
+    vector<int> prefix(n, 0);
+
+    for (int i = 1; i < n; i++) {
+        int j = prefix[i - 1];
+        while (j > 0 && x[i] != x[j]) {
+            j = prefix[j - 1];
+        }
+        if (x[i] == x[j]) {
+            j++;
+        }
+        prefix[i] = j;
+    }
+
+    int len = prefix[n - 1];
+    if (len > 0 && len > n/2) {
+        if (x[n-1] == x[len - 1]) {
+            cout << "YES" << endl;
+            cout << x.substr(0, len) << endl;
+        }else{
+            cout << "NO" << endl;
+        }
+    } else {
+        cout << "NO" << endl;
+    }
+
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    unordered_map<string, int> x;
+    string y;
+    for(int i = 0;i<n;i++){
+        cin >> y;
+        if(x.find(y) != x.end()){
+            cout << y << x[y] << endl;
+            x[y]++;
+        }else{
+            x[y] = 1;
+            cout << "OK" <<endl;
+        }
+    }
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n, k;
+    cin >> n >> k;
+    vector<int> x;
+    x.resize(k);
+    for(int i = 0; i<k;i++){
+        cin >> x[i];
+    }
+    sort(x.begin(), x.end());
+    int min = x[k-1] - x[0];
+    int j = 0;
+    for(int i = n-1; i<k;i++){
+        if(x[i] - x[j] < min){
+            min = x[i] - x[j];
+        }
+        j++;
+    }
+    cout << min << endl;
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int s, n;
+    cin >> s >> n;
+    multimap<int, int>x;
+    int a, b;
+    for(int i =0;i < n;i++){
+        cin >> a >> b;
+        x.insert({a, b});
+    }
+    for(auto i = x.begin();i!=x.end();i++){
+        if(i->first < s){
+            s+=i->second;
+        }else{
+            cout << "NO" << endl;
+            return 0;
+        }
+    }
+    cout << "YES" <<endl;
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n, len;
+    cin >> n >> len;
+    std::cout << fixed;
+    vector<long long int> x;
+    x.resize(n);
+    for(int i = 0;i<n;i++){
+        cin >> x[i];
+    }
+    sort(x.begin(), x.end());
+    double min = 0;
+    min = (x[0] - 0);
+    for(int i = 0;i<n-1;i++){
+        if(min < (x[i+1] - x[i]) / 2.0){
+            min = (x[i+1] - x[i]) / 2.0;
+        }
+    }
+    min = min < (len - x[n-1]) ? (len - x[n-1]) : min;
+    cout << setprecision(6) <<  min << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+bool isPrime(long long n) {
+    if (n <= 1) return false;
+    if (n == 2 || n == 3) return true;
+    if (n % 2 == 0 || n % 3 == 0) return false;
+    for (long long i = 5; i * i <= n; i += 6) {
+        if (n % i == 0 || n % (i + 2) == 0) return false;
+    }
+    return true;
+}
+int main(){
+    long long int n;
+    cin >> n;
+    long long int a;
+    while(n--){
+        cin >> a;
+        long long sqrtA = sqrt(a);
+        if (sqrtA * sqrtA == a) {
+            if (isPrime(sqrtA)) {
+                cout << "YES" << endl;
+            } else {
+                cout << "NO" << endl;
+            }
+        } else {
+            cout << "NO" << endl;
+        }
+    }
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    string x;
+    cin >> x;
+    int i =0;
+    for(i = 0;i<x.size();i++){
+        if(x[i] == '.'){
+            cout << 0;
+        }else if(x[i] == '-' && x[i+1] == '.'){
+            cout << 1;
+            i++;
+        }else{
+            cout << 2;
+            i++;
+        }
+    }
+    cout << endl;
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    string x;
+    getline(cin, x);
+    map<char, int> y;
+    for(int i = 1;i<x.size()-1;i=i+3){
+        y[x[i]] = 1;
+    }
+    cout << y.size() << endl;
+    return 0;
+}
