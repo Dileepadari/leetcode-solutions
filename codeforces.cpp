@@ -1647,3 +1647,134 @@ int main(){
     }
     return 0;
 }
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    string x, y, z;
+    cin >> x >> y >> z;
+    map<char, int> count;
+    for(int i = 0;i<x.size();i++){
+        if(count.find(x[i])==count.end()){
+            count[x[i]] = 1;
+        }else{
+            count[x[i]]++;
+        }
+    }
+
+    for(int i = 0;i<y.size();i++){
+        if(count.find(y[i])==count.end()){
+            count[y[i]] = 1;
+        }else{
+            count[y[i]]++;
+        }
+    }
+
+    if(x.size() + y.size() != z.size()){
+        cout << "NO" << endl;
+        return 0;
+    }
+    for(int i = 0;i<z.size();i++){
+        if(count.find(z[i])==count.end()){
+            cout << "NO" << endl;
+            return 0;
+        }else{
+            count[z[i]]--;
+        }
+    }
+    for(int i = 0;i<x.size();i++){
+        if(count[x[i]]!=0){
+            cout << "NO" << endl;
+            return 0;
+        }
+    }
+    for(int i = 0;i<y.size();i++){
+        if(count[y[i]]!=0){
+            cout << "NO" << endl;
+            return 0;
+        }
+    }
+    cout << "YES" <<endl;
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        int x;
+        cin >> x;
+        int count = 0;
+        int ten = 1;
+        vector<int> p;
+        while(x>0){
+            int rem = x % 10;
+            if(rem != 0){
+                p.push_back(rem*ten);
+                count++;
+            }
+            ten *= 10;
+            x = x/10;
+        }
+        cout << count << endl;
+        for(int i = count-1;i>=0;i--){
+            cout << p[i] << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
+
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    int x;
+    int total_police = 0;
+    int escape = 0;
+    for(int i = 0;i<n;i++){
+        cin >> x;
+        if(x != -1){
+            total_police += x;
+        }
+        if(x == -1 && total_police <= 0){
+            escape++;
+        }
+        if(x == -1 && total_police > 0){
+            total_police--;
+        }
+    }
+    cout << escape << endl;
+    return 0;
+}
+
+// #include <bits/stdc++.h>
+
+// using namespace std;
+// int main(){
+//     int n, m;
+//     cin >> n >> m;
+//     int x;
+//     int present = 1;
+//     int total_count = 0;
+//     for(int i=0;i<m;i++){
+//         cin >> x;
+//         if(x >= present){
+//             total_count += x - present;
+//             present = x;
+//         }else if(x < present){
+//             total_count += ((4 - x) + (x - 1));
+//             present = x;
+//         }
+//     }
+//     cout << total_count << endl;
+//     return 0;
+// }
