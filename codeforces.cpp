@@ -1873,20 +1873,34 @@ int main(){
     return 0;
 }
 
-#include <bits/stdc++.h>
+    #include <bits/stdc++.h>
 
-using namespace std;
-int func(int a, int b){
-    return a > b;
-}
-int main(){
-    int t;
-    cin >> t;
-   
-        cout << y << endl;
+    using namespace std;
+    int main(){
+        int t;
+        cin >> t;
+        while(t--){
+            long long int n, m;
+            cin >> n >> m;
+            long long int p;
+            vector<long long int> x(n);
+            for(long long int i = 0;i<n;i++){
+                cin >> x[i];
+            }
+            sort(x.begin(), x.end());
+            long long int y = 0;
+            for(long long int i = 0;i<m;i++){
+                cin >> p;
+                x[0] = p;
+                sort(x.begin(), x.end());
+            }
+            for(long long int i = 0;i<n;i++){
+                y += x[i];
+            }
+            cout << y << endl;
+        }
+        return 0;
     }
-    return 0;
-}
 
 
 #include <bits/stdc++.h>
@@ -1946,5 +1960,171 @@ int main(){
         }
     }
     cout << count << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    for(int i = 0; i<n;i++){
+        int t;
+        cin >> t;
+        if(t >= 102 && t < 110){
+            cout << "YES" << endl;
+        }else if(t >= 1010 && t < 1100){
+            cout << "YES" << endl;
+        }else{
+            cout << "NO" << endl;
+        }
+    }
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n, k, l, c, d, p, nl, np;
+    cin >> n >> k >> l >> c >> d >> p >> nl >> np;
+    int slimes = (k*l)/nl;
+    int slimes2 = c * d;
+    int slimes3 = p/np;
+    cout << min(min(slimes, slimes2), slimes3)/n << endl;
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        int n;
+        cin >> n;
+        string x;
+        cin >> x;
+        int count = 0;
+        for(int i =0;i<n;i++){
+            if(x[i] == '('){
+                count+=1;
+            }
+        }
+        cout << n/2+(count*2) << endl;
+    }
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        long long int n;
+        cin >> n;
+        map<long long int, long long int> x;
+        long long int count = 0;
+        long long int p;
+        for(long long int j = 1; j<=n;j++){
+            cin >> p;
+            count+=x[p-j];
+            x[p-j]++;
+        }
+        cout << count << endl;
+    }
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        int a, b, c;
+        cin >> a >> b >> c;
+        if(a < b && b < c){
+            cout << "STAIR" << endl;
+        }else if(a < b && b > c){
+            cout << "PEAK" << endl;
+        }else{
+            cout << "NONE" << endl;
+        }
+    }
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin  >> t;
+    while(t--){
+        int n;
+        cin >> n;
+        for(int i = 0; i < n;i++){
+            for(int j = 0; j < n;j++){
+                if((j%2==0 && i % 2 == 0) || (i % 2 !=0 && j % 2 != 0)){
+                    cout << "##";
+                }else{
+                    cout << "..";
+                }
+            }
+            cout << endl;
+            for(int j = 0; j < n;j++){
+                if((j%2==0 && i % 2 == 0) || (i % 2 !=0 && j % 2 != 0)){
+                    cout << "##";
+                }else{
+                    cout << "..";
+                }
+            }
+            cout << endl;
+        }
+    }
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        string x;
+        cin >> x;
+        int req = 0;
+        int num = ((x[0] - '0') * 10) +  (x[1] - '0');
+        if(num != (num % 12)){
+            req = 1;
+            num = num % 12;
+        }
+        if(num!= 0 && req == 0){
+            cout << x << " AM" << endl;
+        }else if(num== 0 && req == 0){
+            cout << "12:" << x[3] << x[4] << " AM" << endl;
+        }else{
+            if(num == 0){
+                num = 12;
+            }
+            if(num < 10){
+                cout << "0" << num << ":" << x[3] << x[4] << " PM" << endl;
+            }else{
+                cout << num << ":" << x[3] << x[4] << " PM" << endl;
+            }
+        }
+    }
     return 0;
 }
