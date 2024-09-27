@@ -2162,3 +2162,76 @@ int main(){
     }
     return 0;
 }
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        int a, b;
+        cin >> a >> b;
+        if((a + b) % 2 == 0){
+            cout << "Bob" << endl;
+        }else{
+            cout << "Alice" << endl; 
+        }
+    }
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        int n;
+        cin >> n;
+        char x;
+        int count = 0;
+        for(int i = 0;i<n;i++){
+            cin >> x;
+            if(x == '+'){
+                count++;
+            }else{
+                count--;
+            }
+        }
+        cout << abs(count) << endl;
+    }
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        int n;
+        cin >> n;
+        int a = INT_MAX, b = INT_MAX;
+        int x;
+        int count = 0;
+        for(int i = 0;i<n;i++){
+            cin >> x;
+            if(a > b){
+                swap(a, b);
+            }
+            if(x <= a){
+                a = x;
+            }else if(x <= b){
+                b = x;
+            }else{
+                count++;
+                a = x;
+            }
+        }
+        cout << count << endl;
+    }
+    return 0;
+}
