@@ -21,8 +21,6 @@ int main(){
     return 0;
 }
 
-
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -49,7 +47,6 @@ int main(){
     }
     return 0;
 }
-
 
 // for single query
 #include <bits/stdc++.h>
@@ -88,10 +85,6 @@ int main() {
     return 0;
 }
 
-
-
-
-
 // rated 432
 
 #include <bits/stdc++.h>
@@ -129,8 +122,6 @@ int main() {
     return 0;
 }
 
-
-
 // Codeforces 973 (Div 2)
 
 #include <bits/stdc++.h>
@@ -147,7 +138,6 @@ int main(){
     }
     return 0;
 }
-
 
 #include <bits/stdc++.h>
 
@@ -254,7 +244,6 @@ int main() {
     return 0;
 }
 
-
 // Codeforces contest 974 (Div 3)
 
 #include <bits/stdc++.h>
@@ -292,7 +281,6 @@ int main() {
     return 0;
 }
 
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -316,8 +304,6 @@ int main(){
     return 0;
 }
 
-
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -334,7 +320,6 @@ int main() {
             cin >> ind_w;
             total += ind_w;
         }
-
 
         sort(wealth.begin(), wealth.end());
         long long int no_thres = (n / 2) + 1;
@@ -364,7 +349,7 @@ int main() {
             cout << "-1\n";
         }
     }
-    
+
     return 0;
 }
 
@@ -519,5 +504,262 @@ int main() {
         }
     }
 
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+
+    while(t--){
+        int n;
+        cin >> n;
+        vector<int> elems;
+        elems.resize(n);
+
+        for (int i = 0; i < n; i++) {
+            cin >> elems[i];
+        }
+
+        int maxi = 0;
+        int elem_count = 0;
+        for (int i = 0; i < n; i=i+2) {
+            if (elems[i] > maxi) {
+                maxi = elems[i];
+            }
+            elem_count++;
+        }
+
+        int zero_index = elem_count + maxi;
+        maxi = 0;
+        elem_count = 0;
+        for (int i = 1; i < n; i=i+2) {
+            if (elems[i] > maxi) {
+                maxi = elems[i];
+            }
+            elem_count++;
+        }
+
+        int one_index = elem_count + maxi;
+
+        if(one_index > zero_index){
+            cout << one_index << endl;
+        }else{
+            cout << zero_index << endl;
+        }
+    }
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        int n, q;
+        cin >> n >> q;
+        vector<int> points;
+        vector<int> queries;
+        vector<int> cov_count;
+        map<int, int> difference;
+        points.resize(n);
+        queries.resize(q);
+        cov_count.resize(n + 1, 0);
+
+        for (int i = 0; i < n; i++) {
+            cin >> points[i];
+        }
+
+        for (int i = 0; i < q; i++) {
+            cin >> queries[i];
+        }
+
+        for (int i = 0; i < n - 1; i++) {
+            difference[points[i]]++;
+            difference[points[i+1]]--;
+        }
+
+        int curr_coverage = 0;
+        int prev_point = -1;
+        for(auto &val: difference){
+            if(curr_coverage > 0 && curr_coverage <= n){
+                cov_count[curr_coverage] = cov_count[curr_coverage] + (val.first - prev_point);
+            }
+            prev_point = val.first;
+            curr_coverage = curr_coverage +  val.second;
+        }
+
+        for (int i = 0; i < q; i++) {
+            if(queries[i] > n){
+                cout << "0 ";
+            }else{
+                cout << cov_count[queries[i]] << " ";
+            }
+        }
+
+        cout << endl;
+
+    }
+    return 0;
+}
+
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+unordered_map<ll, ll> compute_frequency(const vector<ll>& v1, ll n) {
+    unordered_map<ll, ll> freq_map;
+    for (ll i = 1; i <= n; ++i) {
+        ll coverage = (i - 1) * (n - i + 1) + (n - i);
+        freq_map[coverage]++;
+
+        if (i < n) {
+            ll gap = v1[i] - v1[i - 1] - 1;
+            if (gap > 0) {
+                ll inBetweenCount = i * (n - i);
+                freq_map[inBetweenCount] += gap;
+            }
+        }
+    }
+    return freq_map;
+}
+
+vector<string> answer_queries(const vector<ll>& v2, const unordered_map<ll, ll>& freq_map) {
+    vector<string> results;
+    for (const auto& query : v2) {
+        results.push_back(to_string(freq_map.count(query) ? freq_map.at(query) : 0));
+    }
+    return results;
+}
+
+string join(const vector<string>& parts, const string& delimiter) {
+    string combined;
+    for (size_t i = 0; i < parts.size(); ++i) {
+        combined += parts[i];
+        if (i < parts.size() - 1) {
+            combined += delimiter;
+        }
+    }
+    return combined;
+}
+
+int main() {
+
+    ll test_cases;
+    cin >> test_cases;
+
+    vector<string> final_output;
+    while (test_cases--) {
+        ll n, q;
+        cin >> n >> q;
+
+        vector<ll> v1(n);
+        for (ll& element : v1) {
+            cin >> element;
+        }
+
+        vector<ll> v2(q);
+        for (ll& query : v2) {
+            cin >> query;
+        }
+
+        unordered_map<ll, ll> freq_map = compute_frequency(v1, n);
+        vector<string> answers = answer_queries(v2, freq_map);
+
+        final_output.push_back(join(answers, " "));
+    }
+
+    cout << join(final_output, "\n") << endl;
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    long long int t;
+    cin >> t;
+    while(t--){
+        long long int n, q;
+        cin >> n >> q;
+        vector<long long int> points;
+        vector<long long int> queries;
+        unordered_map<long long int, long long int> frequency_map;
+        points.resize(n);
+        queries.resize(q);
+
+        for (long long int i = 0; i < n; i++) {
+            cin >> points[i];
+        }
+
+        for (long long int i = 0; i < q; i++) {
+            cin >> queries[i];
+        }
+
+        for (long long int i = 1; i <= n; i++) {
+            long long space =  (i - 1) * (n - i + 1) + (n - i);
+            frequency_map[space]++;
+
+            if (i < n) {
+                long long distance = points[i] - points[i - 1] - 1;
+                if (distance > 0) {
+                    frequency_map[i * (n - i)] += distance;
+                }
+            }
+        }
+
+        for (long long int i = 0; i < q; i++) {
+            if(frequency_map.find(queries[i]) == frequency_map.end()){
+                cout << "0 ";
+            }else{
+                cout << frequency_map[queries[i]] << " ";
+            }
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    long long int t;
+    cin >> t;
+    while(t--){
+        long long int n, k;
+        cin >> n >> k;
+        vector<long long int> card_counts;
+        card_counts.resize(n);
+        for(long long int i = 0; i < n; i++){
+            cin >> card_counts[i];
+        }
+
+        long long int max_element = 0;
+        for(long long int i = 0; i < n; i++){
+            if(card_counts[i] > max_element){
+                max_element = card_counts[i];
+            }
+        }
+        long long int total_sum = 0;
+        for(long long int i = 0; i < n; i++){
+            total_sum += card_counts[i];
+        }
+
+        for(long long int i = n; i > 0; i--){
+            long long int a = (total_sum + k) / i;
+            if(!((a * i) + 1 <= total_sum) && !(a + 1 <= max_element)){
+                cout << i << endl;
+                break;
+            }
+        }
+    }
     return 0;
 }
