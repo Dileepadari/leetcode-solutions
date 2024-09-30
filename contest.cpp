@@ -726,7 +726,6 @@ int main(){
     return 0;
 }
 
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -760,6 +759,220 @@ int main(){
                 break;
             }
         }
+    }
+    return 0;
+}
+
+#include <iostream>
+#include <vector>
+#include <stack>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        int n;
+        cin >> n;
+
+        vector<int> a(n);
+        for (int i = 0; i < n; ++i)
+        {
+            cin >> a[i];
+        }
+
+        vector<stack<int>> guns;
+
+        for (int i = 0; i < n; ++i)
+        {
+            bool placed = false;
+
+            for (int j=guns.size()-1;j>=0;j--)
+            {
+                if (guns[j].top() > a[i])
+                {
+                    guns[j].push(a[i]);
+                    placed = true;
+                    break;
+                }
+            }
+
+            if (!placed)
+            {
+                stack<int> newGun;
+                newGun.push(a[i]);
+                guns.push_back(newGun);
+            }
+        }
+
+        cout << guns.size() << endl;
+    }
+
+    return 0;
+}
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to calculate the minimum operations needed to make all heights equal to the target
+long long min_operations_to_equalize(vector<long long> heights, long long target) {
+    long long operations = 0;
+    for (auto h : heights) {
+        while (h != target) {
+            if (h > target) {
+                if (h / 2 >= target && h / 2 > 0) {
+                    h /= 2;
+                } else {
+                    h -= 1;
+                }
+            } else {
+                h += 1;
+            }
+            operations++;
+        }
+    }
+    return operations;
+}
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, m;
+        cin >> n >> m;
+        vector<long long> heights(n);
+        for (int i = 0; i < n; i++) {
+            cin >> heights[i];
+        }
+
+        if (m >= n) {
+            cout << 0 << endl;
+            continue;
+        }
+
+        sort(heights.begin(), heights.end());
+
+        long long min_operations = LLONG_MAX;
+
+        for (int i = 0; i <= m; i++) {
+            vector<long long> subset;
+            for (int j = 0; j < n - m; j++) {
+                subset.push_back(heights[i + j]);
+            }
+
+            for(int j = 0; j<subset.size();j++){
+                    long long operations = min_operations_to_equalize(subset, subset[j]);
+                    min_operations = min(min_operations, operations);
+                }
+            }
+
+        cout << min_operations << endl;
+    }
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        int n;
+        cin >> n;
+        vector<int> bullets(n);
+
+        for (int i = 0; i < n; i++) {
+            cin >> bullets[i];
+        }
+
+        int count = 0;
+        for (int i = 0; i < n - 1; i++) {
+            if (bullets[i] > bullets[i + 1]) {
+                bool found = false;
+                for (int j = i + 2; j < n; j++) {
+                    if (bullets[j] <= bullets[i] && bullets[j] >= bullets[i + 1]) {
+                        found = true;
+                        break;
+                    }
+                }
+                if(found) {
+                    count++;
+                }
+            }else{
+                count++;
+            }
+        }
+        cout << count + 1 << endl;
+    }
+
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    long long int t;
+    long long int n, k;
+    cin >> t;
+    while (t--)
+    {
+        cin >> n >> k;
+        long long int count = 0;
+        if(k <= 1){
+            cout << n << endl;
+            continue;
+        }
+
+        while(n >= 1){
+            count = count + (n % k);
+            n = n / k;
+        }
+        cout << count << endl;
+    }
+
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    long long int t;
+    long long int n;
+    long long int left;
+    long long int right;
+    cin >> t;
+    while(t--){
+        cin >> n;
+        left = 1;
+        right = 5 * pow(10, 18);
+        while(left < right){
+            long long int mid = left + (right - left) / 2;
+            long long int l = 0, r = mid;
+            while(l < r){
+                long long int mid2 = l + (r - l + 1) / 2;
+                if(mid2 > (mid / mid2)){
+                    r = mid2 - 1;
+                }else{
+                    l = mid2;
+                }
+            }
+            long long int count = mid - l;
+
+            if(count < n){
+                left = mid + 1;
+            }else{
+                right = mid;
+            }
+        }
+        cout << left << endl;
     }
     return 0;
 }

@@ -2235,3 +2235,174 @@ int main(){
     }
     return 0;
 }
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    string x;
+    int count = 0;
+    for(int i = 0;i < n;i++){
+        cin >> x;
+        if(x[0] == 'T'){
+            count+=4;
+        }else if(x[0] == 'C'){
+            count+=6;
+        }else if(x[0] == 'O'){
+            count+=8;
+        }else if(x[0] == 'D'){
+            count+=12;
+        }else if(x[0] == 'I'){
+            count+=20;
+        }
+
+    }
+    cout << count << endl;
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+
+using namespace std;
+int main(){
+    long long int t;
+    cin >> t;
+    while(t--){
+        long long int x;
+        cin >> x;
+        long long int cub_x = cbrt(x);
+        cout << cub_x << endl;
+        long long int i = 1;
+        long long int j = 1;
+        int flag = 0;
+        for(; i <= cub_x+1; i++){
+            for(; j <= cub_x+1; j++){
+                cout << (long long int)(pow(i, 3)) + (pow(j, 3)) << endl;
+                if(((pow(i, 3)) + (pow(j, 3))) == x){
+                    cout << "YES" << endl;
+                    flag = 1;
+                    break;
+                }
+            }
+            if(flag){
+                break;
+            }
+        }
+        if(!flag){
+            cout << "NO" << endl;
+        }
+    }
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    long long int a, b, c, d;
+    cin >> a >> c >> b >> d;
+    long long int maxi = max(a, max(b, max(c, d)));
+    if(maxi == a){
+        cout << ((b + c) - maxi) << " " << ((b + d) - maxi) << " " << ((d + c) - maxi) << endl;
+    }else if(maxi == b){
+        cout << ((a + c) - maxi) << " " << ((a + d) - maxi) << " " << ((c + d) - maxi) << endl;
+    }else if(maxi == c){
+        cout << ((a + b) - maxi) << " " << ((a + d) - maxi) << " " << ((b + d) - maxi) << endl;
+    }else{
+        cout << ((a + b) - maxi) << " " << ((c + b) - maxi) << " " << ((a + c) - maxi) << endl;
+    }
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        int n;
+        cin >> n;
+        vector<int> x(n);
+        for(int i = 0;i<n;i++){
+            cin >> x[i];
+        }
+        sort(x.begin(), x.end());
+        int flag = 0;
+        for(int i = 0;i < n - 1;i++){
+            if(abs(x[i] - x[i+1]) > 1){
+                flag = 1;
+                break;
+            }
+        }
+        if(flag){
+            cout << "NO" <<endl;
+        }else{
+            cout << "YES" << endl;
+        }
+    }
+    return 0;
+}
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    long long int n;
+    while(t--){
+        cin >> n;
+        if(n <= 6 || n == 9){
+            cout << "NO" << endl;
+            continue;
+        }
+        cout << "YES" << endl;
+        if(n%3==0){
+            cout << 1 << " " << 4 << " " << n - 5 << endl;
+        }else{
+            cout << 1 << " " << 2 << " " << n - 3 << endl;
+        }
+    }
+    return 0;
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+    vector<int> x(n);
+    for(int i =0; i< n;i++){
+        cin >> x[i];
+    }
+    int count1 = 0;
+    int count2 = 0;
+    int i = 0;
+    int j = n - 1;
+    
+    int flag = 1;
+    while(j >= i){
+        if(flag){
+            count1 += max(x[j], x[i]);
+            flag = 0;
+        }else{
+            flag = 1;
+            count2 += max(x[j], x[i]);
+        }
+        if(x[i] >= x[j]){
+            i++;
+        }else{
+            j--;
+        }
+    }
+    cout << count1 << " " << count2 << endl;
+    return 0;
+}
